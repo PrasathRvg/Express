@@ -1,0 +1,27 @@
+doctype html
+html
+   head
+      title EmpList
+   body
+      p <h1> Employee List </h1>
+      table(border="2" cellpadding="10" bgcolor="lemonchiffon")
+         thead(bgcolor="goldenrod")
+            th Fullname 
+                button sort
+            th Email 
+                button sort
+            th mobile 
+                button sort
+            th Technology 
+                button sort
+            th Company 
+                button sort
+         each val in allemployees
+            tr 
+               td #{val.fullname}
+               td #{val.email}
+               td #{val.mobile}
+               td #{val.technology}
+               td #{val.company}
+
+

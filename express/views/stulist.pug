@@ -1,0 +1,24 @@
+doctype html
+html
+   head
+      title StuList
+   body
+      p <h1> Student List </h1>
+      table(border="2" cellpadding="10" bgcolor="yellowgreen")
+         thead(bgcolor="olivedrab")
+            th Fullname 
+               button(type="submit") sort
+            th Email 
+               button sort
+            th mobile 
+               button sort
+            th Scl/Clg
+               button sort
+         each val in allstudents
+            tr 
+               td #{val.fullname}
+               td #{val.email}
+               td #{val.mobile}
+               td #{val.scl/clg}
+
+
