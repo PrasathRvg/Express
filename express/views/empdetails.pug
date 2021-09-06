@@ -7,25 +7,16 @@ html
       table(border="2" cellpadding="10" bgcolor="lemonchiffon")
          thead(bgcolor="goldenrod")
             th Fullname 
-                button sort
             th Email 
-                button sort
             th mobile 
-                button sort
             th city 
-                button sort
             th Technology 
-                button sort
             th Industry  
-                button sort
-         each val in allemployees
+         each val in details
             tr 
-               td 
-                  a(href=`/employee/empdetails/${val.mobile}`) #{val.fullname}
+               td #{val.fullname}
                td #{val.email}
                td #{val.mobile}
                td #{val.city}
                td #{val.technology}
                td #{val.industry}
-
-

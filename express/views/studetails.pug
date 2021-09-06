@@ -1,0 +1,18 @@
+doctype html
+html
+   head
+      title EmpList
+   body
+      p <h1> Employee List </h1>
+      table(border="2" cellpadding="10" bgcolor="lemonchiffon")
+         thead(bgcolor="goldenrod")
+            th Fullname 
+            th Email 
+            th mobile 
+            th scl/clg 
+         each val in details
+            tr 
+               td #{val.fullname}
+               td #{val.email}
+               td #{val.mobile}
+               td #{val.scl/clg}
