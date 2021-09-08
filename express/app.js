@@ -6,6 +6,7 @@ var employeeRoutes=require('./employee.routes.js');
 // var employees=[];
 app.set('view engine', 'pug');
 app.set('views','./views');
+
 app.use(express.urlencoded({extened:true}));
 app.use(express.json());
 
