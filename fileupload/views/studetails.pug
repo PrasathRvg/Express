@@ -1,0 +1,13 @@
+doctype html
+html
+   head
+      title Details
+   body
+      form(action="/updateprofile" method="POST" enctype="multipart/form-data")
+         each val in details
+            img(src=`/${val.profilepic}` width="500px")
+            h1 Name:#{val.Fullname}
+         label UpdateProfile:
+               button(type="submit" formaction=`/updateprofile/${studentid}` formmethod="get") upload
+
+                    

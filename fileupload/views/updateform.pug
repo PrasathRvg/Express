@@ -1,0 +1,12 @@
+html
+    head 
+        title Add Weight Form 
+    body 
+        form(action="/updateprofile" method="post" enctype="multipart/form-data")
+            label Id 
+            input(type="text" value=`${studentid}` name="id")
+            br           
+            label Select Profile:
+            input(type="file" name="profilepic" )
+            br
+            button Update Profile
