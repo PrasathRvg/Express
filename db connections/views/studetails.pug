@@ -1,0 +1,27 @@
+doctype html
+html
+   head
+      title stuList
+   body
+      p <h1> Student List </h1>
+      table(border="2" cellpadding="10" bgcolor="yellowgreen")
+         thead(bgcolor="olivedrab")
+            th Fullname 
+            th Lastname 
+            th Age
+            th Delete
+            th Weight
+            //- th Weight 
+         each val,i in details
+            tr 
+               td #{val.fullname}
+               td #{val.lastname}
+               td #{val.age}
+               
+               td  
+                  a(href=`/deletestudent/${val._id}`) delete this
+               td 
+                  a(href=`/addWeight/${val._id}`) Add
+               
+               //- each i in val.weightEntry
+               //-    td #{i.weight}

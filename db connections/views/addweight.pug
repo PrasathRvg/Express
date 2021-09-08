@@ -1,0 +1,15 @@
+html
+    head 
+        title Add Weight Form 
+    body 
+        form(action="/addWeight" method="post")
+            label Id 
+            input(type="text" value=`${studentid}` name="id")
+            br
+            label Weight 
+            input(type="text" name="weight" placeholder="Enter Weight")
+            br
+            label Enter Date 
+            input(type="date" name="date")
+            br
+            button Add Weight

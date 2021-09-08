@@ -1,0 +1,14 @@
+doctype html
+html
+   head
+      title StuList
+   body
+      p <h1> Student Details </h1>
+      table(border="2" cellpadding="10" bgcolor="yellowgreen")
+         thead(bgcolor="olivedrab")
+            th Fullname 
+         each val in details
+            tr 
+               td 
+                  a(href=`/studentnamelist${val.id}`) #{val.fullname}
+
