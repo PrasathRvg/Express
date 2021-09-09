@@ -26,41 +26,36 @@ app.get("/loginform",function(req,res){
     res.sendFile(__dirname+"/loginform.html")
 })
 
-app.get("/productform",function(req,res){
-    console.log("req cookies for product req::",req.cookies.email)
-    MongoClient.connect(url,function(err,conn){
-        var db=conn.db("delta");
-        db.collection("users").find({email:req.cookies.email})
-        .toArray(function(err,data){
-            if(data[0].email===req.cookies.email){
-                res.send("product working")
-            }
-        })
-    })
-    // res.render("product")
-})
-
-app.get("/salesform",function(req,res){
-    console.log("req cookies for product req::",req.cookies.email)
+var authenticate=function(req,res,next){
+    console.log("inside the function")
     if(req.cookies.email){
         MongoClient.connect(url,function(err,conn){
             var db=conn.db("delta");
             db.collection("users").find({email:req.cookies.email})
             .toArray(function(err,data){
                 console.log(data)
-                if(data[0].email===req.cookies.email){
-                    res.send("sales working")
+                if(data[0].pass===req.cookies.pass){
+                    next()
                 }
                 else{
-                    res.redirect("/loginform.html")
+                    // res.send("login first and come again")
+                    res.redirect("/loginform")
                 }
             })
         })
     }
     else{
-        res.send("login first and come again")
+        res.redirect("/loginform")
     }
-    // res.render("sales")
+}
+
+app.get("/productform",authenticate,function(req,res){
+    res.render("product")
+})
+
+app.get("/salesform",authenticate,function(req,res){
+    console.log("req cookies for product req::",req.cookies.email)
+    res.render("sales")
 })
 
 app.post("/register",function(req,res){
@@ -109,48 +104,50 @@ app.post("/register",function(req,res){
 //     })
 // })
 
-// app.post("/login",function(req,res){
-//     MongoClient.connect=(url,function(err,conn){
-//         var db=conn.db("delta");
-//         db.collection("users").find({email:req.body.email})
-//         .toArray(function(err,data){
-//             if(data.length===0){
-//                 res.sendFile(__dirname+"/logindoesntexist.html")
-//             }
-//             else{
-//                 if(data[0].pass===req.body.pass){
-//                     res.send("Login Successfull")
-//                 }
-//                 else{
-//                     res.sendFile(__dirname+"/loginwrongpass.html")
-//                 }
-//             }
-//         })
-//     })
-// })
-
-
 app.post("/login",function(req,res){
     MongoClient.connect(url,function(err,conn){
-        var db = conn.db("delta");
+        var db=conn.db("delta");
         db.collection("users").find({email:req.body.email})
         .toArray(function(err,data){
             if(data.length===0){
-                res.sendFile(__dirname+"/logindoesntexist.html")               
+                res.sendFile(__dirname+"/logindoesntexist.html")
             }
             else{
-                if(data[0].pwd===req.body.pwd){
+                if(data[0].pass===req.body.pass){
                     res.cookie("email",req.body.email);
                     res.cookie("pass",req.body.pass);
-                    res.send("login successful")
-                }  
+                    res.send("Login Successfull")
+                }
                 else{
-                    res.send("Incorrect password or username")
-                }          
+                    res.sendFile(__dirname+"/loginwrongpass.html")
+                }
             }
         })
     })
 })
+
+
+// app.post("/login",function(req,res){
+//     MongoClient.connect(url,function(err,conn){
+//         var db = conn.db("delta");
+//         db.collection("users").find({email:req.body.email})
+//         .toArray(function(err,data){
+//             if(data.length===0){
+//                 res.sendFile(__dirname+"/logindoesntexist.html")               
+//             }
+//             else{
+//                 if(data[0].pwd===req.body.pwd){
+//                     res.cookie("email",req.body.email);
+//                     res.cookie("pass",req.body.pass);
+//                     res.send("login successful")
+//                 }  
+//                 else{
+//                     res.send("Incorrect password or username")
+//                 }          
+//             }
+//         })
+//     })
+// })
 
 app.listen(9080,function(req,res){
     console.log("Running on 9080")
