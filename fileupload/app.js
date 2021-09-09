@@ -54,20 +54,15 @@ app.get("/updateprofile/:id",function(req,res){
 })
 
 app.post('/updateprofile',upload.single('profilepic'),(req,res) => {
+    console.log(req.file.filename)
     MongoClient.connect(url,(err,conn) => {
-        var db = conn.db('merit');
-        db.collection('student')
+        var db = conn.db('delta');
+        db.collection('students')
         .updateOne(
             {_id : ObjectId(req.body.id)},
             {$set: {profilepic : req.file.filename}},
             (err,data) =>{
-                if(err){
-                    console.log(err);
-                }
-                else{
-                    console.log(data);
-                    res.redirect(`/studentdetails/${req.params.id}`);
-                }
+                res.redirect("/studentnamelist")
         });
     });
 })
@@ -86,11 +81,10 @@ app.get("/studentnamelist",function(req,res){
 app.get("/studentnamelist/:id",function(req,res){
     MongoClient.connect(url,function(err,conn){
         var db=conn.db("delta");
-        db.collection("students").find({_id:ObjectId(req.params.id)}).toArray(function(err,data){
+        db.collection("students").findOne({_id:ObjectId(req.params.id)},function(err,data){
             res.render("studetails",{
                 details:data
             })
-            console.log(data)
         })
     })
 })

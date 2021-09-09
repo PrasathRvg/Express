@@ -3,11 +3,19 @@ html
    head
       title Details
    body
-      form(action="/updateprofile" method="POST" enctype="multipart/form-data")
-         each val in details
-            img(src=`/${val.profilepic}` width="500px")
-            h1 Name:#{val.Fullname}
-         label UpdateProfile:
-               button(type="submit" formaction=`/updateprofile/${studentid}` formmethod="get") upload
+      //- form(action="/updateprofile" method="POST" enctype="multipart/form-data")
+      img(src=`/${details.profilepic}` width="500px")
+      h1 Name:#{details.Fullname}
+      label UpdateProfile:
+      a(href=`/updateprofile/${details._id}`)  upload
 
                     
+app.post("/updateprofile",upload.single("profile"),(req,res)=>{
+    MongoClient.connect(url,(err,conn)=>{
+        var dbo=conn.db("delta")
+        dbo.collection("student").updateOne({_id:ObjectId(req.body.id)},
+        {$set:{profile:req.file.filename}},(err,data)=>{
+            res.redirect("/stud")
+        })
+    })
+})
