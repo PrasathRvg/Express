@@ -1,0 +1,22 @@
+html    
+    body
+        img(src=`/${contact.profilepic}` width="150px") 
+        form(action="/editcontact" method="POST" enctype="multipart/form-data")
+            
+            label id 
+            input(type="text" value=`${contact._id}` name="id")
+            br 
+            br
+            label Name
+            input(type="text" value=`${contact.name}` name="name")
+            br
+            br
+            label mobile no.
+            input(type="text" value=`${contact.mobile}` name="mobile")
+            br
+            br
+            label update profile 
+            input(type="file" value=`${contact.profilepic}`  name="profilepic")
+            br
+            br
+            button Update Contact
