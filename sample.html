@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sample</title>
+</head>
+<body>
+    <label for="sections">Select the Section</label>
+    <select name="sections" id="sec" onclick=showsections(event)>
+        <option value="none" selected disabled>None</option>
+        <option value="all" >All</option> 
+    </select>
+    <ul id="d2">
+
+    </ul>
+</body>
+    <script>
+        
+        var val = document.getElementById("sec");
+        // var secname=val.value;
+
+        var sections={
+            sectionA:['sai','esh','hemanth'],
+            sectionB:['venkat','madan','dinesh'],
+            sectionC:['praveen','dinesh','abhishek']
+        }
+
+        function showsections(e){
+            if(e.target.value=="all"){
+                document.getElementById("d2").innerHTML="";
+                for(k in sections){
+                    console.log(sections[k])
+                    for(var i=0;i<sections[k].length;i++){
+                        var li=document.createElement("li")
+                        li.innerHTML=sections[k][i]
+                        document.getElementById("d2").appendChild(li)
+                    }
+                }
+            }
+            else{
+                var x=e.target.value;
+                document.getElementById("d2").innerHTML="";
+                sections[x].forEach((a)=>
+                {
+                    console.log("a::",a)
+                    var newli=document.createElement("li");
+                    newli.innerHTML=a;
+                    document.getElementById("d2").appendChild(newli);
+                })
+            }
+        }
+
+        for(var k in sections){
+            var newoption = document.createElement("option");
+            newoption.value=k;
+            newoption.id=k;
+            newoption.innerHTML=k;
+            document.getElementById("sec").appendChild(newoption)
+        }
+        
+        // var strUser = newoption.options[newoption.selectedIndex].value;
+        // var secname=val.value;
+        // var newul= document.createElement("ul");
+        // sections[document.getElementById('sec').selectedOptions[0].value].forEach((a)=>{
+        //     console.log(a)
+        //     var newli=document.createElement("li");
+        //     newli.innerHTML=a;
+        //     newul.appendChild(newli);
+        // })
+        // console.log(newul)
+        // document.body.appendChild(newul);
+            
+        
+
+        // for(var i=0;i<sections.length;i++)
+        // {
+        //     var newli=document.createElement("li");
+        //     newli.innerHTML=sections[i];
+        //     newul.appendChild(newli);
+        // }
+
+        
+        // sections[secname].forEach((a)=>{
+        //     console.log(a)
+        //     var newli=document.createElement("li");
+        //     newli.innerHTML=a;
+        //     newul.appendChild(newli);
+        // })
+        // console.log(newul)
+        // document.body.appendChild(newul);
+
+
+    //iterate over object
+    // var details={
+    //     firstname:"praveen",
+    //     lastname:"gubbala",
+    //     age:35,
+    //     domain:"js"
+    // }
+    // for(var i in details){
+    //     console.log(details[i]);
+    // }
+
+//    Object.keys(details).forEach((key)=>{
+//         console.log(details[key])
+//     })
+
+        
+    </script>
+</html>

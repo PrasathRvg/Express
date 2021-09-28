@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input id="age" type="text" />
+    <button type="submit" onclick="givenAge(age.value)",>submit</button>
+</body>
+    <script>
+        var details=[	
+        {
+            "firstname": "praveen",
+            "lastname": "gubbala",
+            "age": 36,
+            "gender": "male",
+            "city": "hyd"
+            }, {
+            "firstname": "srikanth",
+            "lastname": "gubbala",
+            "age": 32,
+            "gender": "male",
+            "city": "bengaluru"
+            }, {
+            "firstname": "pradeep",
+            "lastname": "reddy",
+            "age": 21,
+            "gender": "male",
+            "city": "hyd"
+            }, {
+            "firstname": "mounika",
+            "lastname": "mudiraj",
+            "age": 20,
+            "gender": "female",
+            "city": "nalgonda"
+            }, {
+            "firstname": "nikhil",
+            "lastname": "m",
+            "age": 22,
+            "gender": "male",
+            "city": "guntur"
+            }, {
+            "firstname": "riya",
+            "lastname": "bhadouria",
+            "age": 14,
+            "gender": "female",
+            "city": "indore"
+        }]
+
+
+//---------1--------------
+
+        for(var i in details)
+        {
+            console.log("firstnames:",details[i].firstname);
+        }
+
+//---------2--------------
+
+        for(var i in details)
+        {
+            if(details[i].gender=="female")
+            console.log("female Students:",details[i].firstname);
+        }
+
+//---------3--------------
+        var temp=details[0].age;
+        for(var i=0;i<details.length;i++){
+            if(details[i].age>temp){
+                temp=details[i].age;
+            }
+        }
+        console.log("Elder Age:",temp);
+
+//---------4--------------
+
+        details.forEach(a=>{
+            if(a.city==="hyd")
+            console.log("city:",a.firstname);
+        })
+
+//---------5 & 6-------------
+
+function givenAge(e){
+            for(var i in details){
+                //find using age
+                if(e==details[i].age)
+                console.log(e,":",details[i].firstname)
+                //find using city   
+                else if(e==details[i].city)
+                console.log(e,":",details[i].firstname)
+            }
+        }
+
+//---------7--------------
+        var sum=0;
+        for(var i=0;i<details.length;i++){
+            sum=sum+details[i].age;
+        }
+        var avg=sum/details.length;
+        console.log("avg age of all students:",avg);
+
+//---------8--------------
+        var lastname=[];
+        var temp="";
+        for(var i=0;i<details.length;i++){
+            lastname[i]=details[i].lastname;
+        }
+        for(var i=0;i<details.length;i++){
+            for(var j=0;j<details.length;j++){
+                if(lastname[i]<lastname[j]){
+                    temp=lastname[i];
+                    lastname[i]=lastname[j];
+                    lastname[j]=temp;
+                }
+            }
+        }
+        lastname.forEach(a=>{
+            console.log("sorting Lastname:",a);
+        })
+
+
+    </script>
+</html>
+
+
+    
