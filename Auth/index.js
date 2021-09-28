@@ -1,6 +1,8 @@
 var express=require("express");
 var app=express();
 var {MongoClient} = require('mongodb');
+var cookieParser = require('cookie-parser');
+var session = require('express-session');
 
 const url = "mongodb://localhost:27017/";
 
@@ -10,9 +12,8 @@ app.set('views','./views');
 app.use(express.urlencoded({extended: true})); 
 app.use(express.json());   
 
-var cookieParser = require('cookie-parser');
 app.use(cookieParser());
-
+app.use(session({secret: "Shh, its a secret!"}));
 
 app.get("/",function(req,res){
     res.sendFile(__dirname+"/homepage.html")
@@ -28,13 +29,15 @@ app.get("/loginform",function(req,res){
 
 var authenticate=function(req,res,next){
     console.log("inside the function")
-    if(req.cookies.email){
+    console.log("req.sess::",req.session)
+    console.log("session email::",req.session.email)
+    if(req.session.email){
         MongoClient.connect(url,function(err,conn){
             var db=conn.db("delta");
-            db.collection("users").find({email:req.cookies.email})
+            db.collection("users").find({email:req.session.email})
             .toArray(function(err,data){
                 console.log(data)
-                if(data[0].pass===req.cookies.pass){
+                if(data[0].pass===req.session.pass){
                     next()
                 }
                 else{
@@ -54,7 +57,7 @@ app.get("/productform",authenticate,function(req,res){
 })
 
 app.get("/salesform",authenticate,function(req,res){
-    console.log("req cookies for product req::",req.cookies.email)
+    console.log("req cookies for product req::",req.session.email)
     res.render("sales")
 })
 
@@ -114,8 +117,10 @@ app.post("/login",function(req,res){
             }
             else{
                 if(data[0].pass===req.body.pass){
-                    res.cookie("email",req.body.email);
-                    res.cookie("pass",req.body.pass);
+                    // res.cookie("email",req.body.email);
+                    // res.cookie("pass",req.body.pass);
+                    req.session.email=req.body.email;
+                    req.session.pass=req.body.pass
                     res.send("Login Successfull")
                 }
                 else{
