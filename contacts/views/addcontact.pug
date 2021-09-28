@@ -9,8 +9,10 @@ html
             input(type="text" name="mobile")
             br
             br
-            label Group
-            input(type="text" name="group")
+            label Group 
+            select(name='group')
+                each val in ['friend' , 'family' , 'work','relative']
+                    option=val
             br
             br
             label profilepic

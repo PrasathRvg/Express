@@ -12,7 +12,18 @@ html
             br
             br
             label mobile no.
-            input(type="text" value=`${contact.mobile}` name="mobile")
+            input(type="number" value=`${contact.mobile}` name="mobile")
+            br
+            br
+            label Group
+            //- select#propertyType.select.form-control.input-lg(form='types', name='group')
+            //-     option(value='6') Friends
+            //-     option(value='7') Family
+            //-     option(value='10') Work
+            //-     option(value='11') Relatives
+            select(name='group' )
+                each val in ['friend' , 'family' , 'work','relative']
+                    option(value= val, selected= val ===`${contact.group}`)= val
             br
             br
             label update profile 

@@ -4,21 +4,23 @@ html
    body
     <h1 style="display:inline"> contact List </h1>
       form(action="/addcontact" mehtod="get")
-        button() +
-      table(border="2" cellpadding="10" bgcolor="yellowgreen")
-        thead(bgcolor="olivedrab")
-          th profilepic
-          th Name 
-          th mobile no.
-          th Edit
-          th Delete       
-        each val in details
-          tr 
-          td 
-             img(src=`/${val.profilepic}` width="100px")
-          td #{val.name}
-          td #{val.mobile}
-          td  
+        table(border="2" cellpadding="10" bgcolor="lemonchiffon")
+          thead(bgcolor="goldenrod")
+            th(colspan=5) Contacts 
+              button() +
+          tbody 
+            th profilepic
+            th Name 
+            th mobile no.
+            th Edit
+            th Delete       
+          each val in details
+            tr 
+            td 
+              img(src=`/${val.profilepic}` width="100px")
+            td #{val.name} 
+            td #{val.mobile}
+            td  
               a(href=`/editcontact/${val._id}`) Edit
-          td 
+            td 
               a(href=`/deletecontact/${val._id}`) Delete
