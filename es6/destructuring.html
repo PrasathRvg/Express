@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+    <script>
+
+        ///cloning
+
+        let ar=[11,22,33,44];
+        let br=[];
+        
+
+        // for(var i=0;i<ar.length;i++) /// using for
+        //     br[i]=ar[i];
+
+        ar.forEach(a=>{     ///using foreach
+            br.push(a);
+        })
+
+        let cr=[...ar];
+        ar[2]='hello';
+        console.log("ar",ar);
+        console.log("br",br);
+        console.log("cr",cr);
+
+        ///concat
+
+        let st="hello";
+        let st2="world";
+        console.log("concat:",st.concat(st2));
+
+        ///slice
+
+
+
+
+        ///nested object destructuring
+
+        var student_details = {
+            firstname:'praveen',
+            lastname:'gubbala',
+            age:37,
+            address:{
+                hno:234,
+                building:'3A',
+                soc:'palms',
+                loc:'gachibowli',
+                city:'hyd'
+            }
+        }
+
+        var {firstname:fn,lastname:ln,age:a,address:{hno:n,building:b,soc:s,loc:l,city:c}}=student_details;
+        console.log("s",s);
+
+
+        //destructuring using multiple objects
+
+        var student_details_1= {
+            firstname:'praveen',
+            lastname:'gubbala',
+            age:37,
+            address:{
+                hno:234,
+                building:'3A',
+                soc:'palms',
+                loc:'gachibowli',
+                city:'hyd'
+            }
+        }
+        var more_student_details = {
+            technology:'javascript',
+            interest:'nodejs'
+        }
+
+        var student_details_all={...student_details,...more_student_details}
+
+        console.log("allstudentdetails::",student_details_all);
+
+        //inserting value into array without using push
+
+        var ab=[11,22,33,44];
+        var x=12;
+        ab=[...ab,x]    
+        console.log("ab::",ab);
+
+
+        ////no. as object key
+
+        var abc={
+            1:12314,
+            2:33234,
+            3:23423,
+            [no()]:32423
+        }
+        function no(){
+            return 123;
+        }
+
+        console.log("no:",abc);
+        
+        //types of function
+
+        var square=function(a){
+            return a*a;
+        }
+
+        function square(a){
+            return a*a; 
+        }
+
+        var square=(a)=>{
+            return a*a;
+        }
+
+        var square=(a)=>a*a;
+
+        var square=a=>a*a;
+
+        console.log("square:",square(5));
+
+
+        ///string templates
+
+        var x=10;
+        var y=20;
+        console.log(`the addition of ${x} and ${y} is ${x+y}`);
+    </script>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+    <script>
+        var ar=[12,13,14,15,12,13];
+        var br=[];
+        var br=[...ar]
+        delete ar[2];
+        console.log(ar);
+        // for(var i=0;i<ar.length;i++){
+        //     var temp=ar[i];
+        //     for(var j=0;j<br.length;j++){
+        //         if(ar[i]!=br[j])
+        //             br[i]=ar[i];
+        //     }
+        // }
+        // console.log("br::",br);
+        
+
+        ///map
+
+        var map=new Map();
+        map.set("lastname","gubbala");
+        map.set("firstname","praveen");
+        map.set("age",35);
+
+        for (var i of map){
+            console.log(i); 
+        }
+
+        console.log(map)
+
+
+        ///
+        var obj1=("lastname","gubbala");
+        var obj2=("firstname","praveen");
+        var obj3=("age",35);
+
+        var obj4={obj1,obj2,obj3};
+        console.log("obj4::",obj4);
+        
+
+
+    </script>
+</html>

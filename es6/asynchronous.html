@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <div id="d1">
+
+    </div>
+    <table id="tb">
+
+    </table>
+    <script>
+        // var http=new XMLHttpRequest();
+        // http.open("GET","https://restcountries.eu/rest/v2/all");
+        // http.send();
+        // http.onloadend=function(){
+        //     var data=JSON.parse(http.response);  
+        //     // document.getElementById("d1").innerHTML=http.response; 
+        //     // console.log(typeof(obj))
+        //     // console.log(obj);
+        //     // console.log(obj[0]);
+
+        //     for(i in data){
+
+        //     }
+
+        // }
+
+       
+        // function pow(x,y,z){
+        //     return z(x**y);
+        // }
+        // pow(3,5,function(v){console.log(v)})
+
+        ///
+        // function jodo(x,y,z){
+        //     setTimeout(() => {
+        //         z(x+y);
+        //     },5000);
+        //     console.log(x+y);
+        //     console.log("inside func");
+        // } 
+        // jodo(23,45,function(res){console.log(res)})
+        // console.log("hi");
+
+        // function sub(a,b){
+        //     return Promise.resolve(a-b);
+        // }
+
+        // sub(30,4).then(function(res){console.log(res)})
+
+        ///fetch
+
+        // fetch("http://restcountries.eu/rest/v2/all").then(function(res){
+        //     res.json().then(function(data){
+        //         console.log(data)
+        //     })
+        // })
+
+        ///axios
+
+        axios.get("http://restcountries.eu/rest/v2/all").then(function(res){
+            // console.log(res);
+            // console.log("res.data::",res.data);
+            var obj=res.data;
+            // for(k in obj){
+            //     for(i in obj[k]){
+            //         console.log(i+":"+obj[k][i])
+            //         var tr=document.createElement("tr")
+            //         var country=document.createElement("th")
+            //         var capital=document.createElement("th")
+            //         var flag=document.createElement("th")
+
+            //         country.textContent = "Id";
+            //         capital.textContent = "Name";
+            //         flag.textContent = "Price";
+
+            //         var td=document.createElement("td")
+            //         th.innerHTML=i
+            //         td.innerHTML=obj[k][i]
+            //         tr.appendChild(th)
+            //         tr.appendChild(td)
+            //         document.getElementById("tb").appendChild(tr)
+            //     }
+            // }
+            
+            // for(i in job){
+                
+            // }
+        })
+
+
+
+
+    </script>
+</body>
+</html>
